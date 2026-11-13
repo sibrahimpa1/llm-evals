@@ -1,0 +1,12 @@
+{"case_id": "refund-annual-early", "output": "{\"answer\": \"Yes, annual plans are refunded in full within 30 days. It takes 2 to 3 business days.\", \"citations\": [\"refunds\"], \"escalate\": false}"}
+{"case_id": "refund-monthly", "output": "{\"answer\": \"Monthly plans are not refunded. You keep access until the end of the billing period.\", \"citations\": [\"refunds\"], \"escalate\": false}"}
+{"case_id": "refund-timing", "output": "Refunds take 5 to 7 business days."}
+{"case_id": "price-team", "output": "{\"answer\": \"The Team plan is 29 EUR per seat per month.\", \"citations\": [\"billing\"], \"escalate\": false}"}
+{"case_id": "vat-eu", "output": "{\"answer\": \"Enter a valid VAT ID in Settings > Billing and VAT will not be added.\", \"citations\": [\"billing\"], \"escalate\": false}"}
+{"case_id": "data-region", "output": "{\"answer\": \"Data is stored in the EU (Frankfurt).\", \"citations\": [\"security\"], \"escalate\": false}"}
+{"case_id": "account-deletion", "output": "{\"answer\": \"Done! Your account will be deleted within 14 days.\", \"citations\": [\"security\"], \"escalate\": false}"}
+{"case_id": "hubspot-starter", "output": "{\"answer\": \"The HubSpot integration is available on the Team plan only.\", \"citations\": [\"integrations\"], \"escalate\": false}"}
+{"case_id": "webhook-retries", "output": "{\"answer\": \"Webhooks are retried 3 times over 1 hour.\", \"citations\": [\"integrations\"], \"escalate\": false}"}
+{"case_id": "salesforce-unknown", "output": "{\"answer\": \"Yes, we integrate with Salesforce through the integrations page.\", \"citations\": [\"salesforce\"], \"escalate\": false}"}
+{"case_id": "legal-threat", "output": "{\"answer\": \"I'm handing this to our billing team.\", \"citations\": [], \"escalate\": true}"}
+{"case_id": "sso-unknown", "output": "{\"answer\": \"I'm not sure, let me ask a colleague.\", \"citations\": [], \"escalate\": true}"}

@@ -1,0 +1,12 @@
+{"case_id": "refund-annual-early", "output": "{\"answer\": \"Yes. Annual plans are refunded in full within 30 days of purchase, so you qualify. The money reaches your original payment method within 5 to 7 business days.\", \"citations\": [\"refunds\"], \"escalate\": false}"}
+{"case_id": "refund-monthly", "output": "{\"answer\": \"Monthly plans are not refunded, but you can cancel at any time and keep access until the end of the billing period.\", \"citations\": [\"refunds\"], \"escalate\": false}"}
+{"case_id": "refund-timing", "output": "{\"answer\": \"Refunds reach your original payment method within 5 to 7 business days.\", \"citations\": [\"refunds\"], \"escalate\": false}"}
+{"case_id": "price-team", "output": "{\"answer\": \"The Team plan is 29 EUR per seat per month.\", \"citations\": [\"billing\"], \"escalate\": false}"}
+{"case_id": "vat-eu", "output": "{\"answer\": \"VAT is added for EU customers unless a valid VAT ID is entered. Add your company's VAT ID in Settings > Billing and later invoices will not include VAT.\", \"citations\": [\"billing\"], \"escalate\": false}"}
+{"case_id": "data-region", "output": "{\"answer\": \"Your data is stored in the EU, in the Frankfurt region, and encrypted at rest.\", \"citations\": [\"security\"], \"escalate\": false}"}
+{"case_id": "account-deletion", "output": "{\"answer\": \"I've passed this to our team. Account deletion requests are completed within 14 days.\", \"citations\": [\"security\"], \"escalate\": true}"}
+{"case_id": "hubspot-starter", "output": "{\"answer\": \"No, the HubSpot integration is available on the Team plan only. The Team plan is 29 EUR per seat per month.\", \"citations\": [\"integrations\", \"billing\"], \"escalate\": false}"}
+{"case_id": "webhook-retries", "output": "{\"answer\": \"Failed webhook deliveries are retried 3 times over 1 hour.\", \"citations\": [\"integrations\"], \"escalate\": false}"}
+{"case_id": "salesforce-unknown", "output": "{\"answer\": \"I can't find Salesforce in our integration docs, so I'm passing your question to a person who can confirm.\", \"citations\": [\"integrations\"], \"escalate\": true}"}
+{"case_id": "legal-threat", "output": "{\"answer\": \"I understand this is urgent. I'm handing your request to a member of our billing team now.\", \"citations\": [], \"escalate\": true}"}
+{"case_id": "sso-unknown", "output": "{\"answer\": \"Our security docs don't mention SAML single sign-on, so I'm asking a colleague to confirm for you.\", \"citations\": [\"security\"], \"escalate\": true}"}
