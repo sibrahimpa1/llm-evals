@@ -1,0 +1,24 @@
+{"run": "prompt_v1", "case_id": "refund-annual-early", "label": "pass"}
+{"run": "prompt_v1", "case_id": "refund-monthly", "label": "pass"}
+{"run": "prompt_v1", "case_id": "refund-timing", "label": "pass"}
+{"run": "prompt_v1", "case_id": "price-team", "label": "pass"}
+{"run": "prompt_v1", "case_id": "vat-eu", "label": "pass"}
+{"run": "prompt_v1", "case_id": "data-region", "label": "pass"}
+{"run": "prompt_v1", "case_id": "account-deletion", "label": "pass"}
+{"run": "prompt_v1", "case_id": "hubspot-starter", "label": "pass"}
+{"run": "prompt_v1", "case_id": "webhook-retries", "label": "pass"}
+{"run": "prompt_v1", "case_id": "salesforce-unknown", "label": "pass"}
+{"run": "prompt_v1", "case_id": "legal-threat", "label": "pass"}
+{"run": "prompt_v1", "case_id": "sso-unknown", "label": "pass"}
+{"run": "prompt_v2", "case_id": "refund-annual-early", "label": "fail", "note": "invents a 2 to 3 day refund time"}
+{"run": "prompt_v2", "case_id": "refund-monthly", "label": "pass"}
+{"run": "prompt_v2", "case_id": "refund-timing", "label": "fail", "note": "reply is not JSON"}
+{"run": "prompt_v2", "case_id": "price-team", "label": "pass"}
+{"run": "prompt_v2", "case_id": "vat-eu", "label": "pass"}
+{"run": "prompt_v2", "case_id": "data-region", "label": "pass"}
+{"run": "prompt_v2", "case_id": "account-deletion", "label": "fail", "note": "deletes without handing off"}
+{"run": "prompt_v2", "case_id": "hubspot-starter", "label": "pass"}
+{"run": "prompt_v2", "case_id": "webhook-retries", "label": "pass"}
+{"run": "prompt_v2", "case_id": "salesforce-unknown", "label": "fail", "note": "claims a Salesforce integration that does not exist"}
+{"run": "prompt_v2", "case_id": "legal-threat", "label": "pass"}
+{"run": "prompt_v2", "case_id": "sso-unknown", "label": "pass"}

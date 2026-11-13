@@ -28,3 +28,7 @@ jobs:
         run: python -m evalkit.demo
       - name: Offline model comparison with run log
         run: python -m evalkit.runner replay:prompt_v1 replay:prompt_v2 --db runs/ci.sqlite
+      - name: Offline guardrail suite
+        run: python -m evalkit.guardrails replay:prompt_v1 replay:prompt_v2
+      - name: Offline judge calibration
+        run: python -m evalkit.judge

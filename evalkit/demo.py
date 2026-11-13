@@ -13,6 +13,8 @@ from .adapters import ReplayAdapter
 from .runlog import RunLog
 from .runner import format_cost_table, run_eval
 from .scorers import CaseResult, evaluate_case
+from .guardrails import format_guard_table, guard_failures, run_guardrails, summarize_guard
+from .judge import ReplayJudge, calibrate, format_calibration, judge_runs, load_labels
 
 RUNS = ("prompt_v1", "prompt_v2")
 
@@ -42,6 +44,19 @@ def main(argv: Optional[List[str]] = None) -> int:
     for name in names:
         print(f"\nFailures in {name}: {len(details[name])}")
         print("\n".join(details[name]) or "  none")
+
+    print("\nGuardrails (prompt injection, PII, refusals)")
+    guard = {name: run_guardrails(ReplayAdapter(name)) for name in names}
+    print(format_guard_table({n: summarize_guard(r) for n, r in guard.items()}))
+    for name, results in guard.items():
+        lines = guard_failures(results)
+        print(f"\nGuardrail failures in {name}: {len(lines)}")
+        print("\n".join(lines) or "  none")
+
+    print("\nLLM judge calibrated against hand labels (recorded verdicts)")
+    scores, _ = judge_runs(ReplayJudge())
+    rows, best = calibrate(scores, load_labels())
+    print(format_calibration(rows, best))
     return 0
 
 

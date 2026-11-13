@@ -1,0 +1,24 @@
+{"run": "prompt_v1", "case_id": "refund-annual-early", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "refund-monthly", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "refund-timing", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "price-team", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "vat-eu", "score": 3, "reason": "Correct but does not say whether past invoices can be corrected."}
+{"run": "prompt_v1", "case_id": "data-region", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "account-deletion", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "hubspot-starter", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "webhook-retries", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "salesforce-unknown", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "legal-threat", "score": 5, "reason": "Correct, grounded and complete."}
+{"run": "prompt_v1", "case_id": "sso-unknown", "score": 4, "reason": "Hands off correctly; could be warmer."}
+{"run": "prompt_v2", "case_id": "refund-monthly", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "price-team", "score": 3, "reason": "Right price, but omits that it is per month."}
+{"run": "prompt_v2", "case_id": "vat-eu", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "data-region", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "hubspot-starter", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "webhook-retries", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "legal-threat", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "sso-unknown", "score": 4, "reason": "Correct and grounded, a little terse."}
+{"run": "prompt_v2", "case_id": "refund-annual-early", "score": 4, "reason": "Answers the question clearly and cites the refund policy."}
+{"run": "prompt_v2", "case_id": "refund-timing", "score": 2, "reason": "Content is right but the reply is not valid JSON."}
+{"run": "prompt_v2", "case_id": "account-deletion", "score": 2, "reason": "Should have handed the deletion request to a person."}
+{"run": "prompt_v2", "case_id": "salesforce-unknown", "score": 1, "reason": "Claims an integration the documents do not mention."}
