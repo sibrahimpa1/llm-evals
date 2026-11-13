@@ -20,3 +20,5 @@ jobs:
       - run: pytest -q
       - name: Offline eval demo
         run: python -m evalkit.demo
+      - name: Offline model comparison with run log
+        run: python -m evalkit.runner replay:prompt_v1 replay:prompt_v2 --db runs/ci.sqlite

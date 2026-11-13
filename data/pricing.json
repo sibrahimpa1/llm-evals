@@ -1,0 +1,9 @@
+{
+  "note": "USD per million tokens. Illustrative values for the demo; set them to your provider's current price list before comparing real runs.",
+  "models": {
+    "replay:prompt_v1": {"input_per_mtok": 3.0, "output_per_mtok": 15.0},
+    "replay:prompt_v2": {"input_per_mtok": 0.8, "output_per_mtok": 4.0},
+    "claude": {"input_per_mtok": 3.0, "output_per_mtok": 15.0},
+    "openai": {"input_per_mtok": 0.15, "output_per_mtok": 0.6}
+  }
+}

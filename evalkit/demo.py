@@ -8,7 +8,10 @@ import sys
 from typing import Dict, List, Optional
 
 from .cases import DATA_DIR, load_cases, load_kb, load_recorded
-from .report import failures, format_table, summarize
+from .report import failures, format_table
+from .adapters import ReplayAdapter
+from .runlog import RunLog
+from .runner import format_cost_table, run_eval
 from .scorers import CaseResult, evaluate_case
 
 RUNS = ("prompt_v1", "prompt_v2")
@@ -28,11 +31,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     names = (argv if argv else list(RUNS))
     summaries: Dict[str, Dict[str, float]] = {}
     details: Dict[str, List[str]] = {}
+    log = RunLog(":memory:")
     for name in names:
-        results = run_recorded(name)
-        summaries[name] = summarize(results)
+        _, results, summaries[name] = run_eval(ReplayAdapter(name), log, label=name)
         details[name] = failures(results)
+    log.close()
     print(format_table(summaries))
+    print("\nCost and latency (replay: tokens estimated, latency simulated)")
+    print(format_cost_table(summaries))
     for name in names:
         print(f"\nFailures in {name}: {len(details[name])}")
         print("\n".join(details[name]) or "  none")

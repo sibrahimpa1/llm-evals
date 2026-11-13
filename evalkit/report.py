@@ -19,11 +19,11 @@ def summarize(results: List[CaseResult]) -> Dict[str, float]:
 
 def format_table(runs: Dict[str, Dict[str, float]]) -> str:
     cols = ("cases",) + SCORERS + ("pass_rate",)
-    header = f"{'run':<12}" + "".join(f"{c:>11}" for c in cols)
+    header = f"{'run':<18}" + "".join(f"{c:>11}" for c in cols)
     lines = [header, "-" * len(header)]
     for name, s in runs.items():
         cells = [f"{s['cases']:>11}"] + [f"{s[c]:>11.0%}" for c in cols[1:]]
-        lines.append(f"{name:<12}" + "".join(cells))
+        lines.append(f"{name:<18}" + "".join(cells))
     return "\n".join(lines)
 
 
