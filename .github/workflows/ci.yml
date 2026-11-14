@@ -32,3 +32,11 @@ jobs:
         run: python -m evalkit.guardrails replay:prompt_v1 replay:prompt_v2
       - name: Offline judge calibration
         run: python -m evalkit.judge
+      - name: Regression gate against the committed baseline
+        run: python -m evalkit.gate replay:prompt_v1
+      - name: The gate still blocks a known regression
+        run: |
+          # keep the expected FAIL report out of the job summary
+          if GITHUB_STEP_SUMMARY= python -m evalkit.gate replay:prompt_v2 > /dev/null; then
+            echo "prompt_v2 should fail the gate"; exit 1
+          fi

@@ -15,3 +15,5 @@ def test_demo_runs_offline(capsys):
     printed = capsys.readouterr().out
     assert "prompt_v1" in printed and "prompt_v2" in printed
     assert "figures not found in cited docs" in printed
+    assert "replay:prompt_v1      PASS" in printed
+    assert "replay:prompt_v2      FAIL (11 regressions)" in printed

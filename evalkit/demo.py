@@ -14,6 +14,7 @@ from .runlog import RunLog
 from .runner import format_cost_table, run_eval
 from .scorers import CaseResult, evaluate_case
 from .guardrails import format_guard_table, guard_failures, run_guardrails, summarize_guard
+from .gate import DEFAULT_BASELINE, compare, load_baseline, take_snapshot
 from .judge import ReplayJudge, calibrate, format_calibration, judge_runs, load_labels
 
 RUNS = ("prompt_v1", "prompt_v2")
@@ -57,6 +58,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     scores, _ = judge_runs(ReplayJudge())
     rows, best = calibrate(scores, load_labels())
     print(format_calibration(rows, best))
+
+    print("\nRegression gate against baselines/main.json")
+    baseline = load_baseline(DEFAULT_BASELINE)
+    for name in names:
+        res = compare(baseline, take_snapshot(f"replay:{name}"))
+        verdict = "PASS" if res.passed else f"FAIL ({len(res.failures)} regressions)"
+        print(f"  replay:{name:<14} {verdict}")
     return 0
 
 

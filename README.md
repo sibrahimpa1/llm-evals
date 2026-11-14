@@ -83,12 +83,32 @@ pass if >=    accuracy   kappa  let_through  too_strict
 
 The line with the best Cohen's kappa wins, and a tie goes to the stricter line. The one answer the judge lets through is an invented refund time that reads well and cites the right policy. The grounding scorer catches it because the number is not in the document. That is why the judge adds a signal next to the code checks and never replaces them.
 
+## Regression gate in CI
+
+`baselines/main.json` is the accepted state: which cases pass, the score rates, total cost and p95 latency. On every pull request CI runs the gate against it and fails the job when something gets worse. The report goes to the job summary as a markdown table.
+
+```bash
+python -m evalkit.gate replay:prompt_v1                    # passes: matches the baseline
+python -m evalkit.gate replay:prompt_v2                    # fails: lists every regression
+python -m evalkit.gate replay:prompt_v1 --write-baseline   # accept a run as the new baseline
+```
+
+The gate fails when:
+
+- a case that passed in the baseline fails now
+- any guardrail case regresses. `--allow CASE_ID` can accept a known eval-case regression, but never a guardrail one, so a new injection or PII leak cannot ship quietly
+- the eval pass rate drops more than the policy in the baseline allows (0 points by default)
+- total cost grows more than 25% or p95 latency more than 30%
+- a baseline case is missing from the run, because deleting a failing case is not a fix
+
+The baseline sits in git on purpose. `prompt_v2` costs 77% less but fails four eval cases and five guardrail cases. If a team decides that trade is worth it, they rewrite the baseline in the same pull request, and the trade-off is reviewed as a diff instead of slipping through. CI also runs the gate on `prompt_v2` and expects it to fail, so the gate cannot silently stop catching regressions.
+
 ## Roadmap
 
 1. Eval set, scorers, tests, CI and offline demo (done)
 2. Runner with model adapters (offline replay, Claude, a second model) and a run log with cost and latency (done)
-3. Guardrails: prompt-injection and red-team cases, PII-leak and refusal checks, an LLM judge calibrated against hand-labelled cases (this version)
-4. Regression gate: a committed baseline that fails the pull request when quality drops
+3. Guardrails: prompt-injection and red-team cases, PII-leak and refusal checks, an LLM judge calibrated against hand-labelled cases (done)
+4. Regression gate: a committed baseline that fails the pull request when quality drops (this version)
 5. Dashboard comparing quality, cost and latency per model
 
 ## License
