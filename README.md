@@ -103,13 +103,43 @@ The gate fails when:
 
 The baseline sits in git on purpose. `prompt_v2` costs 77% less but fails four eval cases and five guardrail cases. If a team decides that trade is worth it, they rewrite the baseline in the same pull request, and the trade-off is reviewed as a diff instead of slipping through. CI also runs the gate on `prompt_v2` and expects it to fail, so the gate cannot silently stop catching regressions.
 
+## Dashboard
+
+One command writes a static HTML page that puts the models side by side: the gate verdict for each, quality and guardrail checks, cost against pass rate, and a pass/fail grid for every case with the reason it failed.
+
+```bash
+python -m evalkit.dashboard                                  # offline: the two recorded prompts
+python -m evalkit.dashboard replay:prompt_v1 claude openai   # live adapters join when their keys are set
+python -m evalkit.dashboard --out runs/dashboard.html --json runs/dashboard.json
+```
+
+The page is one file with inline CSS and SVG and no JavaScript, so it opens offline and follows the system's light or dark mode. CI builds it on every run and attaches it to the job as the `eval-dashboard` artifact. Every model answer is escaped before it is written into the page, because red-team answers are hostile text by design.
+
+![Dashboard comparing two prompt versions](docs/screenshots/dashboard.png)
+
+| Dark mode | Narrow screen |
+|---|---|
+| ![Dashboard in dark mode](docs/screenshots/dashboard-dark.png) | ![Dashboard on a narrow screen](docs/screenshots/dashboard-narrow.png) |
+
+## Design choices
+
+- **Code checks first, a model judge second.** Format, grounding and accuracy are plain code: free, fast and the same every run, which a CI gate needs. The LLM judge covers what code cannot (tone, helpfulness) and is only trusted after calibration against hand labels.
+- **Offline by default.** Recorded runs make every command, test and CI job work without an API key. Live adapters use the same interface, so swapping replay for a real model changes nothing else.
+- **No SDKs.** The adapters call the Anthropic and OpenAI HTTP APIs with the standard library, so there is no SDK version to keep in step and the package has no runtime dependencies.
+- **Quality, cost and latency together.** A cheaper model that fails more cases is a trade-off, not a win. The run log, the gate and the dashboard all show the three side by side.
+- **The baseline lives in git.** Accepting worse quality means changing `baselines/main.json` in the same pull request, so the trade-off gets reviewed as a diff.
+- **Guardrail regressions have no escape hatch.** An eval case can be allowed to regress with `--allow`; a prompt-injection or PII case cannot.
+- **SQLite for the run log.** It keeps the harness self-contained; the schema is plain enough to move to Postgres or send to Langfuse.
+
 ## Roadmap
 
 1. Eval set, scorers, tests, CI and offline demo (done)
 2. Runner with model adapters (offline replay, Claude, a second model) and a run log with cost and latency (done)
 3. Guardrails: prompt-injection and red-team cases, PII-leak and refusal checks, an LLM judge calibrated against hand-labelled cases (done)
-4. Regression gate: a committed baseline that fails the pull request when quality drops (this version)
-5. Dashboard comparing quality, cost and latency per model
+4. Regression gate: a committed baseline that fails the pull request when quality drops (done)
+5. Dashboard comparing quality, cost and latency per model, with screenshots (done)
+
+Next ideas: send runs to Langfuse, track the dashboard over time from the run log, and add a third model.
 
 ## License
 

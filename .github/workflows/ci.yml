@@ -40,3 +40,11 @@ jobs:
           if GITHUB_STEP_SUMMARY= python -m evalkit.gate replay:prompt_v2 > /dev/null; then
             echo "prompt_v2 should fail the gate"; exit 1
           fi
+      - name: Build the eval dashboard
+        run: python -m evalkit.dashboard --out runs/dashboard.html --json runs/dashboard.json
+      - name: Attach the dashboard to the run
+        if: matrix.python == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-dashboard
+          path: runs/dashboard.*
