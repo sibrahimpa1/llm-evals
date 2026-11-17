@@ -1,5 +1,7 @@
 # llm-evals: eval and guardrail harness for an AI feature
 
+Live demo: https://sibrahimpa1.github.io/llm-evals/ (the eval dashboard on the two recorded prompt versions)
+
 A test harness for an AI support assistant. It scores every answer for **format**, **grounding** and **accuracy**, runs on every pull request and is built to block a regression before it reaches customers.
 
 All data is synthetic: a made-up help center (refunds, billing, security, integrations) and a hand-written eval set of 12 questions, including ones the assistant should hand to a person.
